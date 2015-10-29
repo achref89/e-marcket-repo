@@ -2,11 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="eMarket-ejb">
 		<jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
-	<class>entities.Customer</class>
 	<class>entities.Category</class>
-	<class>entities.Product</class>
-	<class>entities.CommandLine</class>
 	<class>entities.Command</class>
+	<class>entities.CommandLine</class>
+	<class>entities.Customer</class>
+	<class>entities.Product</class>
+	<class>entities.CommandLinePK</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true"/>

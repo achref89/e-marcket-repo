@@ -3,6 +3,8 @@ package entities;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -21,6 +23,7 @@ public class Customer implements Serializable {
 	private String login;
 	private String password;
 	private static final long serialVersionUID = 1L;
+	private List<Command> commands;
 
 	public Customer() {
 		super();
@@ -67,6 +70,13 @@ public class Customer implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@OneToMany(mappedBy="customer")
+	public List<Command> getCommands() {
+		return commands;
+	}
+	public void setCommands(List<Command> commands) {
+		this.commands = commands;
 	}
    
 }

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Entity implementation class for Entity: Product
@@ -22,9 +23,11 @@ public class Product implements Serializable {
 	private Integer quantity;
 	private Byte[] image;
 
-	private Category category;
-	private List<Command> commands;
+	
+
 	private static final long serialVersionUID = 1L;
+	private Category category;
+	private List<CommandLine> commandLines;
 
 	public Product() {
 		super();
@@ -73,8 +76,7 @@ public class Product implements Serializable {
 
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	//******************************************************
-	//*****************************************************
+	
 	public Category getCategory() {
 		return category;
 
@@ -84,19 +86,11 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
-	@ManyToMany
-	@JoinTable(
-			name="CommandeLine"
-			joincolumn =@JoinColumn(name="pro")
-			)
-	public List<Command> getCommands() {
-		return commands;
-		
+	@OneToMany(mappedBy="product")
+	public List<CommandLine> getCommandLines() {
+		return commandLines;
 	}
-
-	public void setCommands(List<Command> commands) {
-		this.commands = commands;
-
+	public void setCommandLines(List<CommandLine> commandLines) {
+		this.commandLines = commandLines;
 	}
-
 }
