@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import entities.Command;
 import entities.CommandLine;
 
 @Remote
@@ -17,5 +18,8 @@ public void addCommandLine(CommandLine commandLine);
 	public CommandLine getCommandLineById(int id);
 	
 	public List<CommandLine>getAllCommandLine();
+	
+	public Boolean addCommandLineToCommand(CommandLine commandLine, Command command);
 
+	public List<CommandLine> findAllCommandLinesByCommandId(Integer commandId);
 }

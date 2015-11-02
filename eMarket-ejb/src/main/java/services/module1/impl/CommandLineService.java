@@ -72,7 +72,7 @@ public class CommandLineService implements CommandLineServiceRemote, CommandLine
 	}
 
 @Override
-public Boolean createCommandWithNewCommandLine(CommandLine commandLine, Command command) {
+public Boolean addCommandLineToCommand(CommandLine commandLine, Command command) {
 	Boolean b = false;
 	try {
 		List<CommandLine> commandLines= findAllCommandLinesByCommandId(command.getId());
@@ -87,9 +87,8 @@ public Boolean createCommandWithNewCommandLine(CommandLine commandLine, Command 
 
 @Override
 public List<CommandLine> findAllCommandLinesByCommandId(Integer commandId) {
-	Command command = entityManager.find(Command.class,
-			commandId);
-	String jpql = "select t from CommandLine t where t.command=:param";
+	Command command = entityManager.find(Command.class, commandId);
+	String jpql = "select c from CommandLine c where c.command=:param";
 	Query query = entityManager.createQuery(jpql);
 	query.setParameter("param", command);
 	return query.getResultList();
