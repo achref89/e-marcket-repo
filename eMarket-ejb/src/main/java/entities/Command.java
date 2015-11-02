@@ -55,5 +55,10 @@ public class Command implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-   
+	public void linkCommandLinesToThisCommand(List<CommandLine> commandLines) {
+		this.commandLines = commandLines;
+		for (CommandLine c : commandLines) {
+			c.setCommand(this);
+		}
+}
 }

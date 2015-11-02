@@ -8,7 +8,7 @@ import javax.ejb.Remote;
 import entities.Command;
 
 @Remote
-public interface CommandeRemote {
+public interface CommandServiceRemote {
 	public void addCommand(Command command);
 	
 	public void updateCommand(Command command);

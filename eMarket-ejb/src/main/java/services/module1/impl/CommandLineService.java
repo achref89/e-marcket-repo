@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entities.Command;
 import entities.CommandLine;
 import services.module1.interfaces.CommandLineServiceLocal;
 import services.module1.interfaces.CommandLineServiceRemote;
@@ -57,5 +58,41 @@ public class CommandLineService implements CommandLineServiceRemote, CommandLine
 		Query query=entityManager.createQuery("select cmdLine from CommandLine cmdline");
 		return query.getResultList();
 	}
+	
+	@Override
+	public Boolean createCommandLineWhithNewCommand(CommandLine commandLine, Command command) {
+		Boolean b = false;
+		try {
+			commandLine.setCommand(command);
+			entityManager.persist(commandLine);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
+	}
+
+@Override
+public Boolean createCommandWithNewCommandLine(CommandLine commandLine, Command command) {
+	Boolean b = false;
+	try {
+		List<CommandLine> commandLines= findAllCommandLinesByCommandId(command.getId());
+		commandLines.add(commandLine);
+		command.linkCommandLinesToThisCommand(commandLines);
+		entityManager.persist(command);
+		b = true;
+	} catch (Exception e) {
+	}
+	return b;
+}
+
+@Override
+public List<CommandLine> findAllCommandLinesByCommandId(Integer commandId) {
+	Command command = entityManager.find(Command.class,
+			commandId);
+	String jpql = "select t from CommandLine t where t.command=:param";
+	Query query = entityManager.createQuery(jpql);
+	query.setParameter("param", command);
+	return query.getResultList();
+}
 
 }

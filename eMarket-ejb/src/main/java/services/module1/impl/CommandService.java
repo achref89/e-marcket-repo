@@ -7,14 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entities.Command;
-import services.module1.interfaces.CommandeLocal;
-import services.module1.interfaces.CommandeRemote;
+import services.module1.interfaces.CommandServiceLocal;
+import services.module1.interfaces.CommandServiceRemote;
 
 /**
  * Session Bean implementation class Commande
  */
 @Stateless
-public class Commande implements CommandeRemote, CommandeLocal {
+public class CommandService implements CommandServiceRemote, CommandServiceLocal {
 
     /**
      * Default constructor. 
@@ -22,7 +22,7 @@ public class Commande implements CommandeRemote, CommandeLocal {
 	@PersistenceContext
 	EntityManager entityManager;
 	
-    public Commande() {
+    public CommandService() {
         // TODO Auto-generated constructor stub
     }
 
@@ -56,5 +56,8 @@ public class Commande implements CommandeRemote, CommandeLocal {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
 
 }
