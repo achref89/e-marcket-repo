@@ -47,7 +47,7 @@ public class CommandLine implements Serializable {
 		this.product = product;
 	}
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_command",referencedColumnName="id",insertable=false,updatable=false)
 	public Command getCommand() {
 		return command;

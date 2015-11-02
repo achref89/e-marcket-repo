@@ -22,4 +22,6 @@ public void addCommandLine(CommandLine commandLine);
 	public Boolean addCommandLineToCommand(CommandLine commandLine, Command command);
 
 	public List<CommandLine> findAllCommandLinesByCommandId(Integer commandId);
+	
+	public Boolean createCommandLineWhithNewCommand(CommandLine commandLine, Command command);
 }
