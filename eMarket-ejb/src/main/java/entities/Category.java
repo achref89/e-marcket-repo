@@ -25,8 +25,14 @@ public class Category implements Serializable {
 	
 	public Category() {
 		super();
-	}   
-	@Id    
+	}
+	public Category(String libelle) {
+		super();
+		this.libelle=libelle;
+	}
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}
