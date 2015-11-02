@@ -19,6 +19,7 @@ public class Command implements Serializable {
 	private Integer id;
 	private Date date;
 	private static final long serialVersionUID = 1L;
+	
 	private List<CommandLine> commandLines;
 	private Customer customer;
 

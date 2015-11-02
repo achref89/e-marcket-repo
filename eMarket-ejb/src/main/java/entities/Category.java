@@ -50,4 +50,10 @@ public class Category implements Serializable {
 	   this.products=products;
 	
 }
+   public void linkProductToThisCategory(List<Product> products) {
+		this.products = products;
+		for (Product p : products) {
+			p.setCategory(this);
+		}
+	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import entities.Category;
 import entities.Product;
 
 @Remote
@@ -18,5 +19,7 @@ public interface ProductServiceRemote {
 	public Product getProductById(int id);
 	
 	public List<Product>getAllProducts();
+	
+	public Boolean createProductWhithNewCategory(Product product, Category category);
 	
 }

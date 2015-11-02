@@ -74,10 +74,12 @@ public class CustomerService implements CustomerServiceRemote, CustomerServiceLo
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("customer not found!!!");
+			System.out.println("bad credentials!!!");
 		}
 		
 		return customer;
 	}
 
+	
+	
 }

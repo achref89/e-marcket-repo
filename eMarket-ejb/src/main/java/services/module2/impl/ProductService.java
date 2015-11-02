@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entities.Category;
 import entities.Product;
 import services.module2.interfaces.ProductServiceLocal;
 import services.module2.interfaces.ProductServiceRemote;
@@ -62,5 +63,18 @@ public class ProductService implements ProductServiceRemote, ProductServiceLocal
 		return query.getResultList();
 	}
 
+	@Override
+	public Boolean createProductWhithNewCategory(Product product, Category category) {
+		Boolean b = false;
+		try {
+			product.setCategory(category);
+			entityManager.persist(product);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
+	}
+
+	
 
 }
