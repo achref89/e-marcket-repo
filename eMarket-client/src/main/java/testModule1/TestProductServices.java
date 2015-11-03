@@ -16,10 +16,13 @@ public class TestProductServices {
 		Context context = new InitialContext();
 		ProductServiceRemote proxy = (ProductServiceRemote) context
 				.lookup("/eMarket-ejb/ProductServiceRemote!services.module2.interfaces.ProductServiceRemote");
-
-		Product product = new Product("TestProduct");
+	
+		Product product = new Product();
+		Category category = new Category("TestCategory");
+		
 		product.setId(1);
-		proxy.createProductWhithNewCategory(product,);
+		proxy.insertProduct(product);
+		proxy.createProductWhithNewCategory(product, category);
 		System.out.println("produit ajooter ");
 	}
 
