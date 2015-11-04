@@ -13,7 +13,7 @@ public void addCategory(Category category);
 	
 	public void updateCategory(Category category);
 	
-	public void deleteCategory(Category category);
+	public void deleteCategory(int categoryId);
 	
 	public Category getCategoryById(int id);
 	

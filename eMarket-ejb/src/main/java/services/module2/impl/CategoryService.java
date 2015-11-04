@@ -36,13 +36,25 @@ public class CategoryService implements CategoryServiceRemote,
 	@Override
 	public void updateCategory(Category category) {
 		// TODO Auto-generated method stub
-		entityManager.merge(category);
+		try {
+			entityManager.merge(category);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void deleteCategory(Category category) {
+	public void deleteCategory(int categoryId) {
 		// TODO Auto-generated method stub
-		entityManager.remove(category);
+		try {
+			
+			entityManager.remove(getCategoryById(categoryId));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("***************ici**********");
+		}
 
 	}
 
@@ -56,7 +68,7 @@ public class CategoryService implements CategoryServiceRemote,
 	@Override
 	public List<Category> getAllCategoryies() {
 		// TODO Auto-generated method stub
-		Query query = entityManager.createQuery("select cg from Customer cg");
+		Query query = entityManager.createQuery("select c from Category c");
 		return query.getResultList();
 	}
 
