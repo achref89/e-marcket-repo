@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import services.module2.interfaces.CommandManagementServiceLocal;
 import services.module2.interfaces.CommandManagementServiceRemote;
+import entities.Category;
 import entities.Command;
 import entities.CommandLine;
 import entities.Customer;
@@ -37,6 +38,52 @@ public class commandManagementService implements
 
 	}
 
+	/**********************************************************************/
+	@Override
+	public void addCategory(Category category) {
+		entityManager.persist(category);
+	}
+
+	@Override
+	public void updateCategory(Category category) {
+		// TODO Auto-generated method stub
+		try {
+			entityManager.merge(category);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		try {
+
+			entityManager.remove(findCategoryById(categoryId));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("***************ici**********");
+		}
+
+	}
+
+	@Override
+	public Category findCategoryById(int id) {
+		// TODO Auto-generated method stub
+		return entityManager.find(Category.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> findAllCategoryies() {
+		// TODO Auto-generated method stub
+		Query query = entityManager.createQuery("select c from Category c");
+		return query.getResultList();
+	}
+
+	/**********************************************************************/
 	@Override
 	public void updateCustomer(Customer customer) {
 		// TODO Auto-generated method stub
@@ -118,19 +165,20 @@ public class commandManagementService implements
 
 	@Override
 	public void addProduct(Integer CategoryId, Product product) {
-		// TODO Auto-generated method stub
+		product.setCategory(findCategoryById(CategoryId));
+		entityManager.persist(product);
 
 	}
 
 	@Override
 	public void updateProduct(Product product) {
-		// TODO Auto-generated method stub
+		entityManager.merge(product);
 
 	}
 
 	@Override
 	public void deleteProduct(Integer productId) {
-		// TODO Auto-generated method stub
+		entityManager.remove(findProductById(productId));
 
 	}
 
@@ -141,7 +189,7 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public List<Product> getAllProducts() {
+	public List<Product> findAllProducts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -172,7 +220,7 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public List<Command> getAllCommandsLine() {
+	public List<Command> findAllCommandsLine() {
 		// TODO Auto-generated method stub
 		return null;
 	}

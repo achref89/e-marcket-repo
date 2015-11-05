@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import entities.Category;
 import entities.Command;
 import entities.CommandLine;
 import entities.Customer;
@@ -11,6 +12,18 @@ import entities.Product;
 
 @Remote
 public interface CommandManagementServiceRemote {
+	
+	/************************* Category ******************************/
+public void addCategory(Category category);
+	
+	public void updateCategory(Category category);
+	
+	public void deleteCategory(int categoryId);
+	
+	public Category findCategoryById(int id);
+	
+	public List<Category> findAllCategoryies();
+
 	/************************* Customer ******************************/
 	public void addCustomer(Customer customer);
 
@@ -43,7 +56,7 @@ public interface CommandManagementServiceRemote {
 
 	public Product findProductById(int id);
 
-	public List<Product> getAllProducts();
+	public List<Product> findAllProducts();
 
 	/************************* CommandLine ***************************/
 
@@ -56,7 +69,7 @@ public interface CommandManagementServiceRemote {
 
 	public Command findCommandByIdLine(int id);
 
-	public List<Command> getAllCommandsLine();
+	public List<Command> findAllCommandsLine();
 	/************************* ********* ********************************/
 	// Boolean createCommand(Command command);
 	//
