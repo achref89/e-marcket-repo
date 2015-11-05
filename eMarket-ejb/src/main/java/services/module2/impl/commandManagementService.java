@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entities.Command;
 import entities.Customer;
 import services.module2.interfaces.CommandManagementServiceLocal;
 import services.module2.interfaces.CommandManagementServiceRemote;
@@ -78,4 +79,45 @@ public class commandManagementService implements
 		
 		return customer;
 	}
+	
+	
+	@Override
+	public void addCommand(Integer customerId,Command command){
+		// TODO Auto-generated method stub
+		command.setCustomer(findCustomerById(customerId));
+		entityManager.persist(command);
+
+	}
+
+	@Override
+	public void updateCommand(Command command) {
+		// TODO Auto-generated method stub
+		entityManager.merge(command);
+	}
+
+	@Override
+	public void deleteCommand(Integer commandId) {
+		// TODO Auto-generated method stub
+		Command command=findCommandById(commandId);
+		entityManager.remove(command);
+	}
+
+	@Override
+	public Command findCommandById(int id) {
+		// TODO Auto-generated method stub
+		return entityManager.find(Command.class, id);
+	}
+
+	@Override
+	public List<Command> getAllCommands() {
+		Query query = entityManager.createQuery("select cmd from Command cmd");
+		return query.getResultList();// TODO Auto-generated method stub
+
+	}
+
+	
+	
+	
+	
+	
 }

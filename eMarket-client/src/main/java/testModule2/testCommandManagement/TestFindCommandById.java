@@ -5,19 +5,17 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import services.module2.interfaces.CommandManagementServiceRemote;
-import entities.Customer;
+import entities.Command;
 
-public class TestAddCustomer {
+public class TestFindCommandById {
 
-	public static void main(String[] args) throws NamingException {
+	public static void main(String[] args)throws NamingException {
 		Context context = new InitialContext();
 		String url = "eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote";
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
-
-		Customer customer = new Customer("tze", "bbEZb");
-		proxy.addCustomer(customer);
-		System.out.println("customer added");
+		Command command=proxy.findCommandById(2);
+		System.out.println(command.getCustomer().getLogin());
 
 	}
 

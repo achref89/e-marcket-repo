@@ -15,7 +15,7 @@ public class TestFindCustomerById {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
 
-		Customer customer = proxy.findCustomerById(2);
+		Customer customer = proxy.findCustomerById(1);
 		
 		System.out.println(customer.getLogin()+"********"+customer.getPassword());
 	}

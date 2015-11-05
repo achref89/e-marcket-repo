@@ -25,6 +25,8 @@ public class Command implements Serializable {
 
 	public Command() {
 		super();
+		this.date=new Date();
+				
 	}   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

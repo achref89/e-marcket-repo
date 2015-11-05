@@ -5,9 +5,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import services.module2.interfaces.CommandManagementServiceRemote;
-import entities.Customer;
 
-public class TestAddCustomer {
+public class TestDeleteCommand {
 
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
@@ -15,10 +14,11 @@ public class TestAddCustomer {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
 
-		Customer customer = new Customer("tze", "bbEZb");
-		proxy.addCustomer(customer);
-		System.out.println("customer added");
+		// proxy.addCommand(1, new Command());
+		proxy.deleteCommand(2);
 
+	
+		System.out.println("command removed");
 	}
 
 }
