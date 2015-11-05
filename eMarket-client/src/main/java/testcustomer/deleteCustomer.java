@@ -11,7 +11,6 @@ package testcustomer;
 	import services.module2.interfaces.ProductServiceRemote;
 
 
-
 	public class deleteCustomer {
 
 
@@ -19,9 +18,8 @@ package testcustomer;
 			Context context = new InitialContext();
 			CustomerServiceRemote proxy = (CustomerServiceRemote) context
 					.lookup("/eMarket-ejb/CustomerService!services.module2.interfaces.CustomerServiceRemote");
-
-					Customer customer =new Customer();
-		    proxy.deleteCustomer(customer);
-
+			Customer customer =new Customer();
+					
+					proxy.deleteCustomer(customer);
 		}
 	}
