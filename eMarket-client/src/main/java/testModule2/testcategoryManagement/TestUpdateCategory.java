@@ -1,4 +1,4 @@
-package testModule2.categoryManagement;
+package testModule2.testcategoryManagement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

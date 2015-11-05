@@ -26,7 +26,8 @@ public class Command implements Serializable {
 	public Command() {
 		super();
 	}   
-	@Id    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}

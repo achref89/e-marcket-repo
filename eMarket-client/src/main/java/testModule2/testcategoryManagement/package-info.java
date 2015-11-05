@@ -5,4 +5,4 @@
  * @author achref
  *
  */
-package testModule2.categoryManagement;
+package testModule2.testcategoryManagement;

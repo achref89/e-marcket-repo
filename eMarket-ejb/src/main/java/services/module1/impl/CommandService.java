@@ -5,32 +5,34 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import entities.Command;
 import services.module1.interfaces.CommandServiceLocal;
 import services.module1.interfaces.CommandServiceRemote;
+import entities.Command;
 
 /**
- * Session Bean implementation class Commande
+ * Session Bean implementation class CommandService
  */
 @Stateless
-public class CommandService implements CommandServiceRemote, CommandServiceLocal {
+public class CommandService implements CommandServiceRemote,
+		CommandServiceLocal {
 
-    /**
-     * Default constructor. 
-     */
+	/**
+	 * Default constructor.
+	 */
 	@PersistenceContext
 	EntityManager entityManager;
-	
-    public CommandService() {
-        // TODO Auto-generated constructor stub
-    }
+
+	public CommandService() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void addCommand(Command command) {
 		// TODO Auto-generated method stub
 		entityManager.persist(command);
-		
+
 	}
 
 	@Override
@@ -53,11 +55,9 @@ public class CommandService implements CommandServiceRemote, CommandServiceLocal
 
 	@Override
 	public List<Command> getAllCommands() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createQuery("select cmd from Command cmd");
+		return query.getResultList();// TODO Auto-generated method stub
+
 	}
-	
-	
-	
 
 }

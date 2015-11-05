@@ -28,7 +28,13 @@ public class Customer implements Serializable {
 	public Customer() {
 		super();
 	}   
-	@Id    
+	public Customer(String login, String password) {
+		super();
+		this.login=login;
+		this.password=password;
+	}
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}
