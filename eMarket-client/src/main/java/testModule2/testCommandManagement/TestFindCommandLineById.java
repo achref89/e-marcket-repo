@@ -8,18 +8,17 @@ import services.module2.interfaces.CommandManagementServiceRemote;
 import entities.CommandLine;
 import entities.CommandLinePK;
 
-public class TestAddCommanLine {
+public class TestFindCommandLineById {
 
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
+		String url = "eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote";
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
-				.lookup("eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote");
-CommandLine commandLine=new CommandLine(new CommandLinePK(1,1));
-
-commandLine.setQuantity(5);
-		proxy.addCommandLine(1, 1,commandLine );
-		
-		System.out.println("commandline added");
+				.lookup(url);
+		CommandLine commandLine = proxy.findCommandLineById(new CommandLinePK(
+				1, 1));
+		System.out.println(commandLine.getId().getIdCommand() + "   " + " "
+				+ commandLine.getId().getIdProduct());
 
 	}
 

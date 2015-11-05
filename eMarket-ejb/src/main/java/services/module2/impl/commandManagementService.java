@@ -12,6 +12,7 @@ import services.module2.interfaces.CommandManagementServiceRemote;
 import entities.Category;
 import entities.Command;
 import entities.CommandLine;
+import entities.CommandLinePK;
 import entities.Customer;
 import entities.Product;
 
@@ -195,11 +196,15 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public void addCommandLine(Integer commandId, Integer productId,
-			CommandLine commandLine) {
+	public void addCommandLine(Integer productId,Integer commandId,CommandLine commandLine) {
 		commandLine.setCommand(findCommandById(commandId));
 		commandLine.setProduct(findProductById(productId));
-		entityManager.persist(commandLine);
+		try {
+			entityManager.persist(commandLine);
+		} catch (Exception e) {
+			System.out.println("insert exeption");
+			e.printStackTrace();
+		}
 
 	}
 
@@ -210,21 +215,22 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public void deleteCommandLine(Integer commandLineId) {
-		CommandLine commandLine = findCommandLineById(commandLineId);
+	public void deleteCommandLine(CommandLinePK commandLinePK) {
+		CommandLine commandLine = findCommandLineById(commandLinePK);
 		entityManager.remove(commandLine);
 
 	}
 
 	@Override
-	public CommandLine findCommandLineById(int commandLineId) {
-		return entityManager.find(CommandLine.class, commandLineId);
-		
+	public CommandLine findCommandLineById(CommandLinePK commandLinePK) {
+		return entityManager.find(CommandLine.class, commandLinePK);
+
 	}
 
 	@Override
 	public List<CommandLine> findAllCommandsLine() {
-		Query query = entityManager.createQuery("select cl from CommandLine cl");
+		Query query = entityManager
+				.createQuery("select cl from CommandLine cl");
 		return query.getResultList();// TODO Auto-generated method stub
 	}
 

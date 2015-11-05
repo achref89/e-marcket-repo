@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 
 import services.module2.interfaces.CommandManagementServiceRemote;
 import entities.Command;
+import entities.CommandLine;
 
 public class TestFindAllCommand {
 
@@ -17,10 +18,18 @@ public class TestFindAllCommand {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
 
-		List<Command> commands=proxy.findAllCommands();
-		for (Command command :commands ) {
-			System.out.println(command.getId()+"      "+command.getCustomer().getId());
-			
+		List<Command> commands = proxy.findAllCommands();
+		for (Command command : commands) {
+			System.out.println(command.getId() + "      "
+					+ command.getCustomer().getId());
+			if (command.getCommandLines()==null){
+				for (CommandLine commandLine : command.getCommandLines()) {
+					System.out.println(command.getId() + "      "
+							+ command.getCustomer().getId());
+				}
+			} else{
+				System.out.println("Liste vide");
+			}
 		}
 	}
 }

@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import entities.Category;
 import entities.Command;
 import entities.CommandLine;
+import entities.CommandLinePK;
 import entities.Customer;
 import entities.Product;
 
@@ -65,9 +66,9 @@ public void addCategory(Category category);
 
 	public void updateCommandLine(CommandLine commandLine);
 
-	public void deleteCommandLine(Integer commandLineId);
+	public void deleteCommandLine(CommandLinePK commandLinePK);
 
-	public CommandLine findCommandLineById(int commandLineId);
+	public CommandLine findCommandLineById(CommandLinePK commandLinePK) ;
 
 	public List<CommandLine> findAllCommandsLine();
 	/************************* ********* ********************************/

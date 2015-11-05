@@ -20,6 +20,12 @@ public class CommandLinePK implements Serializable {
 
 	public CommandLinePK() {
 		super();
+	}
+	public CommandLinePK(Integer idProduct,Integer idCommand) {
+		super();
+		this.idCommand=idCommand;
+		this.idProduct=idProduct;
+		
 	}  
 	
 	@Column(name="id_product")
