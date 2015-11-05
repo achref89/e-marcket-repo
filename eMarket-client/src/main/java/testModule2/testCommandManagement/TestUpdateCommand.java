@@ -1,5 +1,7 @@
 package testModule2.testCommandManagement;
 
+import java.util.Date;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,10 +18,11 @@ public class TestUpdateCommand {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
 		Command command = proxy.findCommandById(1);
-		Customer customer=proxy.findCustomerById(1);
-	
-		command.setCustomer(customer);
-
+//		Customer customer=proxy.findCustomerById(1);
+//	
+//		command.setCustomer(customer);
+command.setDate(new Date());
+System.out.println(command.getDate());
 		proxy.updateCommand(command);
 
 	}

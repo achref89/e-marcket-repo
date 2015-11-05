@@ -63,13 +63,13 @@ public void addCategory(Category category);
 	public void addCommandLine(Integer commandId, Integer ProductId,
 			CommandLine commandLine);
 
-	public void updateCommandLine(Command command);
+	public void updateCommandLine(CommandLine commandLine);
 
-	public void deleteCommandLine(Integer commandId);
+	public void deleteCommandLine(Integer commandLineId);
 
-	public Command findCommandByIdLine(int id);
+	public CommandLine findCommandLineById(int commandLineId);
 
-	public List<Command> findAllCommandsLine();
+	public List<CommandLine> findAllCommandsLine();
 	/************************* ********* ********************************/
 	// Boolean createCommand(Command command);
 	//

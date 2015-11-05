@@ -183,46 +183,49 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public Product findProductById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product findProductById(int productId) {
+
+		return entityManager.find(Product.class, productId);
 	}
 
 	@Override
 	public List<Product> findAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createQuery("select p from Product p");
+		return query.getResultList();
 	}
 
 	@Override
-	public void addCommandLine(Integer commandId, Integer ProductId,
+	public void addCommandLine(Integer commandId, Integer productId,
 			CommandLine commandLine) {
-		// TODO Auto-generated method stub
+		commandLine.setCommand(findCommandById(commandId));
+		commandLine.setProduct(findProductById(productId));
+		entityManager.persist(commandLine);
 
 	}
 
 	@Override
-	public void updateCommandLine(Command command) {
-		// TODO Auto-generated method stub
+	public void updateCommandLine(CommandLine commandLine) {
+		entityManager.merge(commandLine);
 
 	}
 
 	@Override
-	public void deleteCommandLine(Integer commandId) {
-		// TODO Auto-generated method stub
+	public void deleteCommandLine(Integer commandLineId) {
+		CommandLine commandLine = findCommandLineById(commandLineId);
+		entityManager.remove(commandLine);
 
 	}
 
 	@Override
-	public Command findCommandByIdLine(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommandLine findCommandLineById(int commandLineId) {
+		return entityManager.find(CommandLine.class, commandLineId);
+		
 	}
 
 	@Override
-	public List<Command> findAllCommandsLine() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CommandLine> findAllCommandsLine() {
+		Query query = entityManager.createQuery("select cl from CommandLine cl");
+		return query.getResultList();// TODO Auto-generated method stub
 	}
 
 }
