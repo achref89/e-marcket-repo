@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 
 import services.module2.interfaces.CommandManagementServiceRemote;
 import entities.Category;
+import entities.CommandLine;
 
 public class TestAddCommanLine {
 
@@ -14,7 +15,7 @@ public class TestAddCommanLine {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup("eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote");
 
-		proxy.addCommandLine(1, 1, commandLine);;
+		proxy.addCommandLine(1, 1, new CommandLine());;
 
 	}
 
