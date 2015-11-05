@@ -14,9 +14,13 @@ public class TestFindCommandById {
 		String url = "eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote";
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
-		Command command=proxy.findCommandById(2);
+		Command command=proxy.findCommandById(1);
+		if (command==null) {
+			System.out.println("lllllll");
+		}
+		else{
 		System.out.println(command.getCustomer().getLogin());
-
+		}
 	}
 
 }

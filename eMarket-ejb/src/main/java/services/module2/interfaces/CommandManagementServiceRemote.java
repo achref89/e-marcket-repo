@@ -32,9 +32,9 @@ public interface CommandManagementServiceRemote {
 
 	public Command findCommandById(int id);
 
-	public List<Command> getAllCommands();
+	public List<Command> findAllCommands();
 
-	/************************* Command ********************************/
+	/************************* product ********************************/
 	public void addProduct(Integer CategoryId, Product product);
 
 	public void updateProduct(Product product);

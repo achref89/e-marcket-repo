@@ -15,8 +15,9 @@ public class TestUpdateCommand {
 		String url = "eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote";
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
-		Command command = proxy.findCommandById(3);
+		Command command = proxy.findCommandById(1);
 		Customer customer=proxy.findCustomerById(1);
+	
 		command.setCustomer(customer);
 
 		proxy.updateCommand(command);
