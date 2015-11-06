@@ -22,8 +22,9 @@ public class AddAll {
 		String str = "customer";
 		
 		for (int i = 0; i < 3; i++) {
-			proxy.addCustomer(new Customer(str + (i + 1),
-					str + (i + 1)));
+			Customer customer=new Customer(str + (i + 1),str + (i + 1));
+			customer.setName(str);customer.setLastName(str);
+			proxy.addCustomer(customer);
 			System.out.println("customer " + (i + 1) + " added");
 		}
 

@@ -12,7 +12,8 @@ public class TestDeleteCustomer {
 		Context context = new InitialContext();
 		CommandManagementServiceRemote proxy=(CommandManagementServiceRemote)context.
 lookup("eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote");
-int customerId=1;
+
+		int customerId=1;
 		proxy.deleteCustomer(1);
 System.out.println("customer   "+customerId+"   is removed");
 	}
