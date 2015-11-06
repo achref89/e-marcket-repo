@@ -15,11 +15,13 @@ public class TestUpdateCustomer {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup(url);
 
-		Customer customer = proxy.findCustomerById(2);
+		Customer customer = proxy.findCustomerById(1);
+		if (customer==null){System.out.println("customer null");};
+		customer.setName("Achref");
 		customer.setLogin(customer.getLogin()+"Updated");
 		customer.setPassword(customer.getPassword()+"Updated");
 		proxy.updateCustomer(customer);
-		System.out.println("user updated");
+		System.out.println("customer updated");
 
 	}
 

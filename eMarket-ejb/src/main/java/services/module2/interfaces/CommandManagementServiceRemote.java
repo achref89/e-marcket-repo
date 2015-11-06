@@ -13,16 +13,16 @@ import entities.Product;
 
 @Remote
 public interface CommandManagementServiceRemote {
-	
+
 	/************************* Category ******************************/
-public void addCategory(Category category);
-	
+	public void addCategory(Category category);
+
 	public void updateCategory(Category category);
-	
+
 	public void deleteCategory(int categoryId);
-	
+
 	public Category findCategoryById(int id);
-	
+
 	public List<Category> findAllCategoryies();
 
 	/************************* Customer ******************************/
@@ -68,14 +68,23 @@ public void addCategory(Category category);
 
 	public void deleteCommandLine(CommandLinePK commandLinePK);
 
-	public CommandLine findCommandLineById(CommandLinePK commandLinePK) ;
+	public CommandLine findCommandLineById(CommandLinePK commandLinePK);
 
 	public List<CommandLine> findAllCommandsLine();
+
 	/************************* ********* ********************************/
 	// Boolean createCommand(Command command);
 	//
 	// Command findCommandById(Integer commandId);
 	//
 	// List<Command> findAllCommands();
+
+	public Customer login(String login, String password);
+
+	public Customer bestCustomer();
+
+	Customer findAllCommandByCustomer(Customer customer);
+
+	public float  totalCommandsByCustomer(Integer customerId);
 
 }

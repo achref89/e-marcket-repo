@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.ws.rs.GET;
 
 import services.module2.interfaces.CommandManagementServiceLocal;
 import services.module2.interfaces.CommandManagementServiceRemote;
@@ -113,6 +114,7 @@ public class commandManagementService implements
 		return query.getResultList();
 	}
 
+	@Override
 	public Customer login(String login, String password) {
 		Customer customer = null;
 		String jpql = "select c from Customer c where c.login=:param1 and c.password=:param2";
@@ -196,7 +198,8 @@ public class commandManagementService implements
 	}
 
 	@Override
-	public void addCommandLine(Integer productId,Integer commandId,CommandLine commandLine) {
+	public void addCommandLine(Integer productId, Integer commandId,
+			CommandLine commandLine) {
 		commandLine.setCommand(findCommandById(commandId));
 		commandLine.setProduct(findProductById(productId));
 		try {
@@ -227,11 +230,51 @@ public class commandManagementService implements
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CommandLine> findAllCommandsLine() {
 		Query query = entityManager
 				.createQuery("select cl from CommandLine cl");
 		return query.getResultList();// TODO Auto-generated method stub
+	}
+
+	// @Override
+	// public List<Command> findAllCommandByCustomer(Customer customer){
+	//
+	// Query query = entityManager.createQuery
+	// ( "select cmd from Competence cmd "
+	// + " where :customer member of cmd.customer");
+	// query.setParameter("customer", customer);
+	// return query.getResultList();
+	//
+	// }
+
+	
+	public float  totalCommandsByCustomer(Integer customerId) {
+		float ret=0;
+		Customer customer=findCustomerById(customerId);
+		List<Command> commands=customer.getCommands();
+		for (Command command:commands ) {
+			List<CommandLine> commandLines=command.getCommandLines();
+			for (CommandLine commandLine : commandLines) {
+				float a=(commandLine.getProduct().getPrice())*(commandLine.getQuantity());
+				ret+=a;
+			}
+			
+		}
+return ret;
+	}
+
+	@Override
+	public Customer bestCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer findAllCommandByCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
