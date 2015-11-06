@@ -25,7 +25,7 @@ public class TestFindAllCommand {
 			if (command.getCommandLines()==null){
 				for (CommandLine commandLine : command.getCommandLines()) {
 					System.out.println(command.getId() + "      "
-							+ command.getCustomer().getId());
+							+ command.getCustomer().getId()+" "+commandLine.getQuantity());
 				}
 			} else{
 				System.out.println("Liste vide");

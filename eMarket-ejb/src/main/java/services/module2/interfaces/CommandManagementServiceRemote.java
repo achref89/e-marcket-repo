@@ -73,16 +73,26 @@ public interface CommandManagementServiceRemote {
 	public List<CommandLine> findAllCommandsLine();
 
 	/************************* ********* ********************************/
-	// Boolean createCommand(Command command);
-	//
-	// Command findCommandById(Integer commandId);
-	//
-	// List<Command> findAllCommands();
 
 	public Customer login(String login, String password);
 
-	public float  totalCommandsByCustomer(Integer customerId);
+	public float totalCommandsByCustomer(Integer customerId);
+
 	public Customer bestCustomer();
-	public int  UnitsCommandedByProduct(Integer productId);
+
+	public int UnitsCommandedByProduct(Integer productId);
+
 	public Product mostCommandedProduct();
+
+	
+
+	// ////////////////////////////////////////////////////////////////////////
+	public List<CommandLine> findCommandLinesByCustomerAndCategory(
+			Category category, Customer customer);
+
+	public float totalByCustomerAndCategory(Category category, Customer customer);
+
+	public int numberByCustomerAndCategory(Category category, Customer customer);
+
+	public String mostBoughtCategoryByCustomer(Customer customer);
 }

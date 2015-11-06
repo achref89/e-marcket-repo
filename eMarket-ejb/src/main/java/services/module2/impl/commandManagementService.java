@@ -158,6 +158,7 @@ public class commandManagementService implements
 		return entityManager.find(Command.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Command> findAllCommands() {
 		Query query = entityManager.createQuery("select cmd from Command cmd");
@@ -190,6 +191,7 @@ public class commandManagementService implements
 		return entityManager.find(Product.class, productId);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> findAllProducts() {
 		Query query = entityManager.createQuery("select p from Product p");
@@ -303,6 +305,56 @@ public class commandManagementService implements
 			}
 		}
 		return most;
+	}
+
+	@Override
+	public List<CommandLine> findCommandLinesByCustomerAndCategory(
+			Category category, Customer customer) {
+		Query query = entityManager
+				.createQuery("select cl from CommandLine cl join cl.command cmd where cmd.customer=:param1 and cl.product.category=:param2 ");
+		query.setParameter("param1", customer);
+		query.setParameter("param2", category);
+		@SuppressWarnings("unchecked")
+		List<CommandLine> commandLines = query.getResultList();
+		return commandLines;
+	}
+
+	@Override
+	public float totalByCustomerAndCategory(Category category, Customer customer) {
+		List<CommandLine> commandLines = findCommandLinesByCustomerAndCategory(
+				category, customer);
+		float sum = 0;
+		for (CommandLine commandLine : commandLines) {
+			sum += commandLine.getQuantity()
+					* commandLine.getProduct().getPrice();
+		}
+		return sum;
+	}
+
+	@Override
+	public int numberByCustomerAndCategory(Category category, Customer customer) {
+		List<CommandLine> commandLines = findCommandLinesByCustomerAndCategory(
+				category, customer);
+		int sum = 0;
+		for (CommandLine commandLine : commandLines) {
+			sum += commandLine.getQuantity();
+		}
+		return sum;
+	}
+
+	@Override
+	public String mostBoughtCategoryByCustomer(Customer customer) {
+		float sum = 0;
+		Category categorySum = null;
+		for (Category category : findAllCategoryies()) {
+			int i = numberByCustomerAndCategory(category, customer);
+			if (i > sum) {
+				sum = i;
+				categorySum = category;
+			}
+		}
+
+		return sum + categorySum.getLibelle();
 	}
 
 }
