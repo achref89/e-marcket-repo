@@ -5,20 +5,16 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import services.module2.interfaces.CommandManagementServiceRemote;
-import entities.Customer;
 
-public class TestBestCustomer {
+public class TestUnitsCommandedByProduct {
 
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup("eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote");
-		Customer customer = proxy.bestCustomer();
+int tot=proxy.UnitsCommandedByProduct(2);
+System.out.println(tot);
 
-		System.out.println("The best Customer is " + customer.getName()
-				+ "with total ="
-				+ proxy.totalCommandsByCustomer(customer.getId()));
-		
 	}
 
 }

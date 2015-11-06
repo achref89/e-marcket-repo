@@ -37,11 +37,12 @@ public class AddAll {
 
 		// ///////// product
 
-		int price = 0;
+		int price = 10;
 		for (int i = 0; i < 3; i++) {
 			Product product = new Product();
-			float f = new Float(price + i);
+			float f = new Float(price + (i*5));
 			product.setPrice(f);
+			product.setLibelle("product"+(i+1));
 			Category category = proxy.findCategoryById(i + 1);
 			if (category == null) {
 				System.out
@@ -49,6 +50,7 @@ public class AddAll {
 								+ i);
 			} else {
 				product.setCategory(category);
+				
 			}
 			proxy.addProduct(i + 1, product);
 			System.out.println("product " + (i + 1) + " added");
@@ -62,13 +64,14 @@ public class AddAll {
 			}
 		}
 		// ///////commdLine
-
+int i;
 		for (Command command : proxy.findAllCommands()) {
+			i=1;
 			for (Product product : proxy.findAllProducts()) {
-				
+				i+=5;
 				CommandLine commandLine = 
 						new CommandLine(new CommandLinePK(product.getId(),command.getId()));
-				commandLine.setQuantity(5);
+				commandLine.setQuantity(i);
 				proxy.addCommandLine(product.getId(),command.getId(), commandLine);
 				System.out.println("commandLine added for product"+product.getId()+" commande "+command.getId());
 

@@ -292,8 +292,17 @@ public class commandManagementService implements
 
 	@Override
 	public Product mostCommandedProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		Product most = null;
+		float max = 0;
+
+		for (Product product : findAllProducts()) {
+			int f = UnitsCommandedByProduct(product.getId());
+			if (f > max) {
+				max = f;
+				most = product;
+			}
+		}
+		return most;
 	}
 
 }
