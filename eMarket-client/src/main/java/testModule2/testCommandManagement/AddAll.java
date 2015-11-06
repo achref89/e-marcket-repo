@@ -19,11 +19,11 @@ public class AddAll {
 		CommandManagementServiceRemote proxy = (CommandManagementServiceRemote) context
 				.lookup("eMarket-ejb/commandManagementService!services.module2.interfaces.CommandManagementServiceRemote");
 		// customer/////////////////////////
-		String customerName = "customer";
-		String customerLastName = "customer";
+		String str = "customer";
+		
 		for (int i = 0; i < 3; i++) {
-			proxy.addCustomer(new Customer(customerName + (i + 1),
-					customerLastName + (i + 1)));
+			proxy.addCustomer(new Customer(str + (i + 1),
+					str + (i + 1)));
 			System.out.println("customer " + (i + 1) + " added");
 		}
 

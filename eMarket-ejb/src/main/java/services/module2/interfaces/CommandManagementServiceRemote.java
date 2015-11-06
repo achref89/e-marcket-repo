@@ -81,10 +81,8 @@ public interface CommandManagementServiceRemote {
 
 	public Customer login(String login, String password);
 
-	public Customer bestCustomer();
-
-	Customer findAllCommandByCustomer(Customer customer);
-
 	public float  totalCommandsByCustomer(Integer customerId);
-
+	public Customer bestCustomer();
+	public int  UnitsCommandedByProduct(Integer productId);
+	public Product mostCommandedProduct();
 }

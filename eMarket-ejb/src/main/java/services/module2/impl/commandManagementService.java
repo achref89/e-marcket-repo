@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
 
 import services.module2.interfaces.CommandManagementServiceLocal;
 import services.module2.interfaces.CommandManagementServiceRemote;
@@ -249,30 +248,50 @@ public class commandManagementService implements
 	//
 	// }
 
-	
-	public float  totalCommandsByCustomer(Integer customerId) {
-		float ret=0;
-		Customer customer=findCustomerById(customerId);
-		List<Command> commands=customer.getCommands();
-		for (Command command:commands ) {
-			List<CommandLine> commandLines=command.getCommandLines();
+	public float totalCommandsByCustomer(Integer customerId) {
+		float ret = 0;
+		Customer customer = findCustomerById(customerId);
+		List<Command> commands = customer.getCommands();
+		for (Command command : commands) {
+			List<CommandLine> commandLines = command.getCommandLines();
 			for (CommandLine commandLine : commandLines) {
-				float a=(commandLine.getProduct().getPrice())*(commandLine.getQuantity());
-				ret+=a;
+				float a = (commandLine.getProduct().getPrice())
+						* (commandLine.getQuantity());
+				ret += a;
 			}
-			
+
 		}
-return ret;
+		return ret;
 	}
 
 	@Override
 	public Customer bestCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		Customer best = null;
+		float max = 0;
+
+		for (Customer customer : findAllCustomers()) {
+			float f = totalCommandsByCustomer(customer.getId());
+			if (f > max) {
+				max = f;
+				best = customer;
+			}
+		}
+		return best;
 	}
 
 	@Override
-	public Customer findAllCommandByCustomer(Customer customer) {
+	public int UnitsCommandedByProduct(Integer productId) {
+		int tot = 0;
+		Product product = findProductById(productId);
+		List<CommandLine> commandLines = product.getCommandLines();
+		for (CommandLine commandLine : commandLines) {
+			tot += commandLine.getQuantity();
+		}
+		return tot;
+	}
+
+	@Override
+	public Product mostCommandedProduct() {
 		// TODO Auto-generated method stub
 		return null;
 	}
